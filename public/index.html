@@ -2,19 +2,30 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
+
+  <!-- 🔥 เพิ่มอันนี้ (สำคัญมาก) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>เช็คข้อมูลสินค้า</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-  <h1>🔍 ตรวจสอบสินค้า</h1>
+  <div class="container">
+    <h1>🔍 ค้นหาสินค้า</h1>
 
-  <input type="text" id="search" placeholder="กรอกรหัสสินค้า (ID)">
-  
-  <div id="result"></div>
-</div>
+    <div class="search-box">
+      <input
+        type="text"
+        id="diInput"
+        placeholder="กรอกรหัสสินค้า (DI)"
+      >
+      <button onclick="searchDI()">ค้นหา</button>
+    </div>
 
-<script src="script.js"></script>
+    <div id="result"></div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
