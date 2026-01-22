@@ -2,7 +2,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 const app = express();
 
-const SHEET_ID = "ใส่_SHEET_ID_ตรงนี้";
+const SHEET_ID = "1BVJ9EVad7zmZ4PLX-JA0lZXutwS6qb2xPv2CUJ1k76g";
 const API_KEY = "AIzaSyAFCd62UD7hxkUNm3HdDZR4eEa1tz00uII";
 
 app.use(express.static("public"));
