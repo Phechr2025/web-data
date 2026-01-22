@@ -5,7 +5,6 @@ async function loadData() {
   sheetData = await res.json();
 }
 
-// โหลดทุก 1 วินาที
 setInterval(loadData, 1000);
 loadData();
 
@@ -16,7 +15,6 @@ document.getElementById("search").addEventListener("input", () => {
 
   if (!id) return;
 
-  // ข้ามแถวแรก (หัวตาราง)
   const found = sheetData.slice(1).find(row => row[1] === id);
 
   if (!found) {
