@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const app = express();
 
 const SHEET_ID = "ใส่_SHEET_ID_ตรงนี้";
-const API_KEY = "ใส่_API_KEY_ตรงนี้";
+const API_KEY = "AIzaSyAFCd62UD7hxkUNm3HdDZR4eEa1tz00uII";
 
 app.use(express.static("public"));
 
