@@ -1,36 +1,33 @@
-let sheetData = [];
-
-async function loadData() {
-  const res = await fetch("/api/products");
-  sheetData = await res.json();
-}
-
-// โหลดทุก 1 วินาที
-setInterval(loadData, 1000);
-loadData();
-
-document.getElementById("search").addEventListener("input", () => {
-  const id = document.getElementById("search").value.trim();
+function searchDI() {
+  const di = document.getElementById("diInput").value.trim();
   const result = document.getElementById("result");
-  result.innerHTML = "";
 
-  if (!id) return;
-
-  // ข้ามแถวแรก (หัวตาราง)
-  const found = sheetData.slice(1).find(row => row[1] === id);
-
-  if (!found) {
-    result.innerHTML = "<p>❌ ไม่พบสินค้า</p>";
+  if (!di) {
+    alert("กรุณาใส่รหัสสินค้า (DI)");
     return;
   }
 
-  result.innerHTML = `
-    <div class="card">
-      <h2>${found[0]}</h2>
-      <p><b>ID:</b> ${found[1]}</p>
-      <p><b>รายละเอียด:</b> ${found[2] || "-"}</p>
-      <p><b>เพิ่มเติม:</b> ${found[3] || "-"}</p>
-      ${found[4] ? `<img src="${found[4]}">` : ""}
-    </div>
-  `;
-});
+  result.innerHTML = "⏳ กำลังค้นหา...";
+
+  fetch(`/search?di=${encodeURIComponent(di)}`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data || data.error) {
+        result.innerHTML = "❌ ไม่พบข้อมูล";
+        return;
+      }
+
+      result.innerHTML = `
+        <div class="card">
+          <p><b>ชื่อสินค้า:</b> ${data.name}</p>
+          <p><b>รหัสสินค้า:</b> ${data.id}</p>
+          <p><b>รายละเอียด:</b> ${data.detail}</p>
+          <p><b>เพิ่มเติม:</b> ${data.extra || "-"}</p>
+          ${data.image ? `<img src="${data.image}">` : ""}
+        </div>
+      `;
+    })
+    .catch(() => {
+      result.innerHTML = "❌ เกิดข้อผิดพลาด";
+    });
+}
