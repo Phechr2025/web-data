@@ -1,31 +1,75 @@
-body {
+* {
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#667eea,#764ba2);
-  color: #333;
+}
+
+body {
+  margin: 0;
+  background: #f2f4f7;
 }
 
 .container {
-  width: 90%;
   max-width: 600px;
-  margin: 50px auto;
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
+  margin: auto;
+  padding: 16px;
 }
 
-input {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
+h1 {
+  text-align: center;
   margin-bottom: 20px;
 }
 
+/* 🔍 กล่องค้นหา */
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 14px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.search-box input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.search-box button {
+  padding: 14px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+/* 📦 การ์ดข้อมูล */
 .card {
-  border-top: 1px solid #ddd;
-  padding-top: 15px;
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .card img {
   max-width: 100%;
   border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* 📱 มือถือ */
+@media (max-width: 480px) {
+  .search-box {
+    flex-direction: column;
   }
+
+  .search-box button {
+    width: 100%;
+  }
+    }
