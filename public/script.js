@@ -5,32 +5,17 @@ async function loadData() {
   sheetData = await res.json();
 }
 
-// โหลดทุก 1 วินาที
-setInterval(loadData, 1000);
 loadData();
+setInterval(loadData, 3000);
 
-document.getElementById("search").addEventListener("input", () => {
-  const id = document.getElementById("search").value.trim();
-  const result = document.getElementById("result");
-  result.innerHTML = "";
+function resolveImageUrl(url) {
+  if (!url) return "";
 
-  if (!id) return;
-
-  // ข้ามแถวแรก (หัวตาราง)
-  const found = sheetData.slice(1).find(row => row[1] === id);
-
-  if (!found) {
-    result.innerHTML = "<p>❌ ไม่พบสินค้า</p>";
-    return;
+  // Google Drive
+  const drive = url.match(/drive\.google\.com\/file\/d\/(.+?)\//);
+  if (drive) {
+    return `https://drive.google.com/uc?export=view&id=${drive[1]}`;
   }
 
-  result.innerHTML = `
-    <div class="card">
-      <h2>${found[0]}</h2>
-      <p><b>ID:</b> ${found[1]}</p>
-      <p><b>รายละเอียด:</b> ${found[2] || "-"}</p>
-      <p><b>เพิ่มเติม:</b> ${found[3] || "-"}</p>
-      ${found[4] ? `<img src="${found[4]}">` : ""}
-    </div>
-  `;
-});
+  // Direct image
+  if (url.match(/^https?:\/\/.
